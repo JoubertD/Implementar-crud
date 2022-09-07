@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.Persona;
 
-public class PersonaDAO {
+public class PersonaDAOBinario {
 	private Archivo archivo;
 
 
 	
-	public PersonaDAO(File file) {
+	public PersonaDAOBinario(File file) {
 		archivo = new Archivo(file);
 
 	}
