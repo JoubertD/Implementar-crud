@@ -5,11 +5,13 @@ public class Persona {
 	private String Nombre;
 	private String Correo;
 	private String Telefono;
+	private String Id; 
 	
-	public Persona(String name, String correo, String telefono) {
+	public Persona(String id ,String name, String correo, String telefono) {
 		Nombre = name;
 		Correo = correo;
 		Telefono = telefono;
+		Id = id;
 	}
 	
 	public Persona() {
@@ -56,6 +58,20 @@ public class Persona {
 	 */
 	public void setTelefono(String telefono) {
 		Telefono = telefono;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return Id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		Id = id;
 	}
 	
 	
