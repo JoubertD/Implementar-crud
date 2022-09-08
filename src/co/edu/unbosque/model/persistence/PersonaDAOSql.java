@@ -64,29 +64,38 @@ public class PersonaDAOSql implements DAO{
 		}
 	}
 	@Override
-	public void modificar(String npersona, String correo, String telefono, String id) {
+	public void modificar(String id, String npersona, String correo, String telefono) {
 		// TODO Auto-generated method stub
+		try {
+			stat = conexion.createStatement();
+			ResultSet resultados= stat.executeQuery("select * from persona;");
+			while(resultados.next()) {
+				if(resultados.getString("Id").equals(id)) {
+					stat.executeUpdate("UPDATE persona SET Id = '"+ id + "', Nombre = '"+ npersona + "', Correo = '"+ correo + 
+							"', Telefono = '" + telefono
+							+ "' WHERE Id = '" + id + "'");
+				}
+			}
+			resultados= stat.executeQuery("select * from persona;");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
+	public 
 	@Override
 	public void eliminar(String npersona) {
 		// TODO Auto-generated method stub
 		try {
 			stat = conexion.createStatement();
 			ResultSet resultados= stat.executeQuery("select * from persona;");
-			System.out.println("En el borrar");
 			while(resultados.next()) {
 				if(resultados.getString("Id").equals(npersona)) {
 					stat.executeUpdate("Delete from persona where Id = '" + npersona + "';");
 				}
 			}
 			resultados= stat.executeQuery("select * from persona;");
-			while(resultados.next()) {
-				System.out.println("Identificacion: " + resultados.getString("Id"));
-				System.out.println("Nombre: " + resultados.getString("Nombre"));
-				System.out.println("Correo: " + resultados.getString("Correo"));
-				System.out.println("Telefono: " + resultados.getString("Telefono"));
-			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,8 +104,24 @@ public class PersonaDAOSql implements DAO{
 	}
 	@Override
 	public Persona buscar(String npersona) {
-		// TODO Auto-generated method stub
+		try {
+			stat = conexion.createStatement();
+			ResultSet resultados= stat.executeQuery("select * from persona;");
+			while(resultados.next()) {
+				if(resultados.getString("Id").equals(npersona)) {
+					String id = resultados.getString("Id");
+					String nombre = resultados.getString("Nombre");
+					String correo = resultados.getString("Correo");
+					String telefono = resultados.getString("Telefono");
+					Persona persona = new Persona(id, nombre, correo, telefono);
+					return persona;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
-	}
+		}
 
 }

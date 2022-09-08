@@ -34,12 +34,12 @@ public class Controller implements ActionListener {
 		persona = new ArrayList<Persona>();
 		
 		ventanaPrincipal = new VentanaPrincipal();
-		
 		file = new File("Persona.dat");
 		archivo = new Archivo(file);
 		binario = new PersonaDAOBinario(file);
 		arreglo = new PersonaDAOArreglo();
 		sql = new PersonaDAOSql();
+		sql.conectar();
 		listaBinario = archivo.leerArchivo(file);
 		ventanaEmergente = new VentanaEmergente();
 
@@ -106,7 +106,7 @@ public class Controller implements ActionListener {
 			if(seleccionado.equals("arreglo")) {
 				String id = ventanaEmergente.pedirDatos("Digite la identificacion:");
 				String nombre = ventanaEmergente.pedirDatos("Escriba el nombre:");
-				String correo = ventanaEmergente.pedirDatos("Escriba la correo:");
+				String correo = ventanaEmergente.pedirDatos("Escriba el correo:");
 				String telefono = ventanaEmergente.pedirDatos("Escriba su Telefono:");
 				Persona persona = new Persona(id,nombre,correo,telefono);
 				arreglo.registrar(persona);
@@ -114,18 +114,34 @@ public class Controller implements ActionListener {
 			}else if(seleccionado.equals("binario")) {
 				
 			}else if(seleccionado.equals("sql")) {
-				
+				String id = ventanaEmergente.pedirDatos("Digite la identificacion:");
+				String nombre = ventanaEmergente.pedirDatos("Escriba el nombre:");
+				String correo = ventanaEmergente.pedirDatos("Escriba el correo:");
+				String telefono = ventanaEmergente.pedirDatos("Escriba su Telefono:");
+				Persona persona = new Persona(id,nombre,correo,telefono);
+				sql.registrar(persona);
+				ventanaEmergente.mostrarDatos("Persona agregada con exito");
 			}else {
 				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
 			}
 			break;
 		case "actualizar":
 			if(seleccionado.equals("arreglo")) {
-				
+				String id = ventanaEmergente.pedirDatos("Digite la identificacion:");
+				String nombre = ventanaEmergente.pedirDatos("Escriba el nuevo nombre:");
+				String correo = ventanaEmergente.pedirDatos("Escriba el nuevo correo:");
+				String telefono = ventanaEmergente.pedirDatos("Escriba el nuevo Telefono:");
+				arreglo.modificar(id, nombre, correo, telefono);
+				ventanaEmergente.mostrarDatos("Persona modificada");
 			}else if(seleccionado.equals("binario")) {
 				
 			}else if(seleccionado.equals("sql")) {
-				
+				String id = ventanaEmergente.pedirDatos("Digite la identificacion:");
+				String nombre = ventanaEmergente.pedirDatos("Escriba el nuevo nombre:");
+				String correo = ventanaEmergente.pedirDatos("Escriba el nuevo correo:");
+				String telefono = ventanaEmergente.pedirDatos("Escriba el nuevo Telefono:");
+				sql.modificar(id, nombre, correo, telefono);
+				ventanaEmergente.mostrarDatos("Persona modificada");
 			}else {
 				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
 			}
@@ -138,7 +154,9 @@ public class Controller implements ActionListener {
 			}else if(seleccionado.equals("binario")) {
 				
 			}else if(seleccionado.equals("sql")) {
-				
+				String id = ventanaEmergente.pedirDatos("Ingrese el id de la persona a borrar");
+				sql.eliminar(id);
+				ventanaEmergente.mostrarDatos("Persona Eliminada");
 			}else {
 				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
 			}
@@ -149,13 +167,19 @@ public class Controller implements ActionListener {
 		case "buscar":
 			if(seleccionado.equals("arreglo")) {
 				String id = ventanaEmergente.pedirDatos("Digite el Id de la persona buscada: ");
-				Persona persona = arreglo.buscar(id);
-				ventanaEmergente.mostrarDatos(persona.toString());
+				try{
+					Persona persona = arreglo.buscar(id);
+					ventanaEmergente.mostrarDatos(persona.toString());
+				}catch(Exception cualquiera) {
+					ventanaEmergente.mostrarDatos("Persona no encontrada");
+				}
 				
 			}else if(seleccionado.equals("binario")) {
 				
 			}else if(seleccionado.equals("sql")) {
-				
+				String id = ventanaEmergente.pedirDatos("Digite el Id de la persona buscada: ");
+				Persona persona = sql.buscar(id);
+				ventanaEmergente.mostrarDatos(persona.toString());
 			}else {
 				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
 			}
