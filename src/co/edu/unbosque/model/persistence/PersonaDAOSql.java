@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,7 +84,30 @@ public class PersonaDAOSql implements DAO{
 		}
 		
 	}
-	public 
+	public ArrayList<Persona> mostrartodos(){
+		try {
+			stat = conexion.createStatement();
+			ResultSet resultados= stat.executeQuery("select * from persona;");
+			ArrayList<Persona> personas = new ArrayList<Persona>();
+			while(resultados.next()) {
+					String id = resultados.getString("Id");
+					String nombre = resultados.getString("Nombre");
+					String correo = resultados.getString("Correo");
+					String telefono = resultados.getString("Telefono");
+					Persona persona = new Persona(id, nombre, correo, telefono);
+					personas.add(persona);
+				
+			}
+			for(int i = 0; i < personas.size(); i++) {
+				personas.get(i).toString();
+			}
+			return personas;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	@Override
 	public void eliminar(String npersona) {
 		// TODO Auto-generated method stub
