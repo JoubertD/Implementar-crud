@@ -12,15 +12,34 @@ public class PersonaDAOBinario implements DAO{
 		archivo = new Archivo(file);
 
 	}
+	
+	
+	public Boolean crearPersona(String id, String nombre, String correo, String telefono,
+			ArrayList<Persona> personas, File file) {
+		
+		personas.add(new Persona(id,nombre,correo,telefono));
+		try {
+			archivo.escribirArchivo(personas, file);
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
+	}
 
-	public String mostrarPersona(String persona) {
-		String texto = "";
+	public Persona buscarPersona(String id, File file) {
+		Persona p = null;
 
-		Persona objEntrenador = new Persona();
+		ArrayList<Persona> objPersona= archivo.leerArchivo(file);
+		
+		for (int i = 0; i < objPersona.size(); i++) {
+			if(objPersona.get(i).getId().equals(id)) {
+				p = objPersona.get(i);
+			}
+		}
 
-		texto = texto.concat(objEntrenador.toString() + "\n");
 
-		return texto;
+		return p;
 	}
 
 

@@ -1,11 +1,14 @@
 package co.edu.unbosque.model;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable{
 	
 	private String Nombre;
 	private String Correo;
 	private String Telefono;
 	private String Id; 
+	private static final long serialVersionUID = 1L;
 	
 	public Persona(String id ,String name, String correo, String telefono) {
 		Nombre = name;
