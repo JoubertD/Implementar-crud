@@ -30,7 +30,7 @@ public class PersonaDAOArreglo implements DAO{
 		// TODO Auto-generated method stub
 		if(Personas != null) {
 			for(int i=0; i < Personas.size();i++) {
-				if(Personas.get(i).getNombre().equals(persona)) {
+				if(Personas.get(i).getId().equals(persona)) {
 					Personas.remove(i);
 				}
 			}
@@ -43,7 +43,7 @@ public class PersonaDAOArreglo implements DAO{
 		// TODO Auto-generated method stub
 		Persona personabuscada = null;
 		for(int i=0; i < Personas.size();i++) {
-			if(Personas.get(i).getNombre().equals(npersona)) {
+			if(Personas.get(i).getId().equals(npersona)) {
 				personabuscada = Personas.get(i);
 			}
 		}

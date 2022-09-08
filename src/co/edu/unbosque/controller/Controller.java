@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import co.edu.unbosque.model.*;
 import co.edu.unbosque.model.persistence.Archivo;
+import co.edu.unbosque.model.persistence.PersonaDAOArreglo;
 import co.edu.unbosque.model.persistence.PersonaDAOBinario;
 import co.edu.unbosque.view.VentanaEmergente;
 import co.edu.unbosque.view.VentanaPrincipal;
@@ -22,6 +23,8 @@ public class Controller implements ActionListener {
 	private File file;
 	private Archivo archivo;
 	private PersonaDAOBinario binario;
+	private PersonaDAOArreglo arreglo;
+	private PersonaDAOSql sql;
 	private ArrayList<Persona> listaBinario;
 	
 
@@ -33,6 +36,8 @@ public class Controller implements ActionListener {
 		file = new File("Persona.dat");
 		archivo = new Archivo(file);
 		binario = new PersonaDAOBinario(file);
+		arreglo = new PersonaDAOArreglo();
+		sql = new PersonaDAOSql();
 		listaBinario = archivo.leerArchivo(file);
 		ventanaEmergente = new VentanaEmergente();
 
@@ -96,19 +101,54 @@ public class Controller implements ActionListener {
 			inicializarCrud();
 			break;
 		case "crear":
-			
+			if(seleccionado.equals("arreglo")) {
+				String id = ventanaEmergente.pedirDatos("Digite la identificacion:");
+				String nombre = ventanaEmergente.pedirDatos("Escriba el nombre:");
+				String correo = ventanaEmergente.pedirDatos("Escriba la correo:");
+				String telefono = ventanaEmergente.pedirDatos("Escriba su Telefono:");
+				Persona persona = new Persona(id,nombre,correo,telefono);
+				arreglo.registrar(persona);
+				ventanaEmergente.mostrarDatos("Persona agregada con exito");
+			}else if(seleccionado.equals("binario")) {
+				
+			}else if(seleccionado.equals("sql")) {
+				
+			}else {
+				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
+			}
 			break;
 		case "actualizar":
 			
 			break;
 		case "borrar":
-			
+			if(seleccionado.equals("arreglo")) {
+				String id = ventanaEmergente.pedirDatos("Ingrese el id de la persona a borrar");
+				arreglo.eliminar(id);
+				ventanaEmergente.mostrarDatos("Persona Eliminada");
+			}else if(seleccionado.equals("binario")) {
+				
+			}else if(seleccionado.equals("sql")) {
+				
+			}else {
+				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
+			}
 			break;
 		case "ver":
 			ventanaEmergente.mostrarDatos("Datos personas: ");
 			break;
 		case "buscar":
-			
+			if(seleccionado.equals("arreglo")) {
+				String id = ventanaEmergente.pedirDatos("Digite el Id de la persona buscada: ");
+				Persona persona = arreglo.buscar(id);
+				ventanaEmergente.mostrarDatos(persona.toString());
+				
+			}else if(seleccionado.equals("binario")) {
+				
+			}else if(seleccionado.equals("sql")) {
+				
+			}else {
+				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
+			}
 			break;
 
 		default:

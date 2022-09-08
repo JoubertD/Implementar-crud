@@ -73,6 +73,13 @@ public class Persona {
 	public void setId(String id) {
 		Id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "Persona Nombre = " + Nombre + "\n Correo = " + Correo + "\n Telefono = " + Telefono + "\n Id = " + Id;
+	}
+	
+	
 	
 	
 
