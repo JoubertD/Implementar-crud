@@ -141,6 +141,7 @@ public class VentanaPrincipal extends JFrame {
 
 		borrar.setFont(f);
 		borrar.setBackground(new Color(133, 135, 140 ));
+		borrar.setForeground(Color.black);
 		borrar.setBorderPainted(false);
 		borrar.setContentAreaFilled(true);
 		borrar.setFocusPainted(true);
@@ -152,6 +153,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 		ver.setFont(f);
+		ver.setForeground(Color.black);
 		ver.setBackground(new Color(225, 226, 230 ));
 		ver.setBorderPainted(false);
 		ver.setContentAreaFilled(true);
@@ -164,6 +166,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 		buscar.setFont(f);
+		buscar.setForeground(Color.black);
 		buscar.setBackground(new Color(255, 255, 255  ));
 		buscar.setBorderPainted(false);
 		buscar.setContentAreaFilled(true);

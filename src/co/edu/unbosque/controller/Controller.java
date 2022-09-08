@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import co.edu.unbosque.model.*;
 import co.edu.unbosque.model.persistence.Archivo;
 import co.edu.unbosque.model.persistence.PersonaDAOBinario;
+import co.edu.unbosque.view.VentanaEmergente;
 import co.edu.unbosque.view.VentanaPrincipal;
 
 public class Controller implements ActionListener {
 	
 	private VentanaPrincipal ventanaPrincipal;
+	private VentanaEmergente ventanaEmergente;
 	
 	private ArrayList<Persona> persona;
 	private File file;
@@ -29,6 +31,7 @@ public class Controller implements ActionListener {
 		archivo = new Archivo(file);
 		binario = new PersonaDAOBinario(file);
 		listaBinario = archivo.leerArchivo(file);
+		ventanaEmergente = new VentanaEmergente();
 
 		asignarOyentes();
 	}
@@ -45,16 +48,16 @@ public class Controller implements ActionListener {
 		ventanaPrincipal.getarreglo().addActionListener(this);
 		ventanaPrincipal.getBinario().addActionListener(this);
 		ventanaPrincipal.getSql().addActionListener(this);
+	}
+	
+	public void inicializarCrud() {
 		ventanaPrincipal.getCrear().addActionListener(this);
 		ventanaPrincipal.getBorrar().addActionListener(this);
 		ventanaPrincipal.getActualizar().addActionListener(this);
 		ventanaPrincipal.getVer().addActionListener(this);
 		ventanaPrincipal.getBuscar().addActionListener(this);
-		
-		
-
-
 	}
+	
 	private void funcionar() {
 		
 	}
@@ -65,18 +68,37 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String accion = e.getActionCommand();
+		String seleccionado = null;
 		switch (accion) {
 		case "arreglo":
 			ventanaPrincipal.cambiarVentana(accion);
+			seleccionado = accion;
+			inicializarCrud();
 			break;
 		case "binario":
 			ventanaPrincipal.cambiarVentana(accion);
+			seleccionado = accion;
+			inicializarCrud();
 			break;
 		case "sql":
 			ventanaPrincipal.cambiarVentana(accion);
+			seleccionado = accion;
+			inicializarCrud();
 			break;
-		case "salir":
-			System.exit(0);
+		case "crear":
+			
+			break;
+		case "actualizar":
+			
+			break;
+		case "borrar":
+			
+			break;
+		case "ver":
+			ventanaEmergente.mostrarDatos("Datos personas: ");
+			break;
+		case "buscar":
+			
 			break;
 
 		default:
