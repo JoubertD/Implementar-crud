@@ -15,7 +15,7 @@ public class PersonaDAOArreglo implements DAO{
 	}
 
 	@Override
-	public void modificar(String npersona, String correo, String telefono, String id) {
+	public void modificar(String id, String npersona, String correo, String telefono) {
 		// TODO Auto-generated method stub
 		for(int i=0; i < Personas.size();i++) {
 			if(Personas.get(i).getNombre().equals(npersona)) {

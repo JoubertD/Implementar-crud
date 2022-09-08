@@ -26,9 +26,11 @@ public class Controller implements ActionListener {
 	private PersonaDAOArreglo arreglo;
 	private PersonaDAOSql sql;
 	private ArrayList<Persona> listaBinario;
+	private String seleccionado = "";
 	
 
 	public Controller() throws Exception {
+		
 		persona = new ArrayList<Persona>();
 		
 		ventanaPrincipal = new VentanaPrincipal();
@@ -83,9 +85,9 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String accion = e.getActionCommand();
-		String seleccionado = null;
 		switch (accion) {
 		case "arreglo":
+			
 			ventanaPrincipal.cambiarVentana(accion);
 			seleccionado = accion;
 			inicializarCrud();
@@ -118,7 +120,15 @@ public class Controller implements ActionListener {
 			}
 			break;
 		case "actualizar":
-			
+			if(seleccionado.equals("arreglo")) {
+				
+			}else if(seleccionado.equals("binario")) {
+				
+			}else if(seleccionado.equals("sql")) {
+				
+			}else {
+				ventanaEmergente.mostrarDatos("No se ha podido identificar el metodo");
+			}
 			break;
 		case "borrar":
 			if(seleccionado.equals("arreglo")) {
