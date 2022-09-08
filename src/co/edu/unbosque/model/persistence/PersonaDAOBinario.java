@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import co.edu.unbosque.model.Persona;
 
-public class PersonaDAOBinario {
+public class PersonaDAOBinario implements DAO{
 	private Archivo archivo;
 
 	public PersonaDAOBinario(File file) {
@@ -73,5 +73,31 @@ public class PersonaDAOBinario {
 	 */
 	public void setArchivo(Archivo archivo) {
 		this.archivo = archivo;
+	}
+
+	@Override
+	public void registrar(Persona persona) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificar(String npersona, String correo, String telefono, String id) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public void eliminar(String npersona) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Persona buscar(String npersona) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 }

@@ -26,11 +26,11 @@ public class PersonaDAOArreglo implements DAO{
 	}
 
 	@Override
-	public void eliminar(Persona persona) {
+	public void eliminar(String persona) {
 		// TODO Auto-generated method stub
 		if(Personas != null) {
 			for(int i=0; i < Personas.size();i++) {
-				if(Personas.get(i).equals(persona)) {
+				if(Personas.get(i).getNombre().equals(persona)) {
 					Personas.remove(i);
 				}
 			}
