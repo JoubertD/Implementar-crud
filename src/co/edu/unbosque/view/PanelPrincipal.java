@@ -7,9 +7,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PanelPrincipal extends JFrame {
+public class PanelPrincipal extends JPanel {
 	private JLabel fondo;
 	private JTextField nickname;
 	private JButton continuar, salir;
